@@ -1,0 +1,19 @@
+# Node / Next.js
+node_modules/
+.next/
+out/
+dist/
+.env*.local
+
+# Go
+backend/tmp/
+*.exe
+*.test
+*.out
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+*.log
