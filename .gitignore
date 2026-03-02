@@ -5,6 +5,7 @@ out/
 dist/
 .env*.local
 
+.env
 # Go
 backend/tmp/
 backend/voting-backend
