@@ -1,35 +1,46 @@
+version: '3.8'
+
 services:
-  db:
-    image: postgres:16
-    environment:
-      POSTGRES_USER: odeen
-      POSTGRES_PASSWORD: odeen
-      POSTGRES_DB: odeen
-    ports:
-      - "5432:5432"
-    volumes:
-      - db_data:/var/lib/postgresql/data
-
-  backend:
-    build: ./backend
-    ports:
-      - "8080:8080"
-    environment:
-      DB_HOST: db
-      DB_USER: odeen
-      DB_PASSWORD: odeen
-      DB_NAME: odeen
-    depends_on:
-      - db
-
   frontend:
-    build: ./frontend
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+        NEXT_PUBLIC_BASE_URL: ${NEXT_PUBLIC_BASE_URL}
     ports:
       - "3000:3000"
-    environment:
-      NEXT_PUBLIC_API_URL: http://localhost:8080
+    env_file:
+      - .env
     depends_on:
       - backend
 
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "9000:8080"
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/db/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d assembly"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
 volumes:
-  db_data:
+  postgres_data:

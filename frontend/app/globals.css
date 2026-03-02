@@ -1,3 +1,295 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Emerald-Teal palette — Odeen Visual Identity */
+  --background: oklch(0.975 0.005 165);
+  --foreground: oklch(0.14 0.025 165);
+  --card: oklch(0.99 0.003 165);
+  --card-foreground: oklch(0.14 0.025 165);
+  --popover: oklch(0.99 0.003 165);
+  --popover-foreground: oklch(0.14 0.025 165);
+  --primary: oklch(0.45 0.14 165);
+  --primary-foreground: oklch(0.98 0.005 165);
+  --secondary: oklch(0.95 0.012 165);
+  --secondary-foreground: oklch(0.22 0.04 165);
+  --muted: oklch(0.94 0.012 165);
+  --muted-foreground: oklch(0.50 0.03 165);
+  --accent: oklch(0.92 0.03 80);
+  --accent-foreground: oklch(0.28 0.06 80);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.55 0.22 25);
+  --border: oklch(0.90 0.015 165);
+  --input: oklch(0.90 0.015 165);
+  --ring: oklch(0.50 0.12 165);
+  --chart-1: oklch(0.45 0.14 165);
+  --chart-2: oklch(0.55 0.12 145);
+  --chart-3: oklch(0.65 0.10 130);
+  --chart-4: oklch(0.50 0.08 180);
+  --chart-5: oklch(0.70 0.06 160);
+  --radius: 0.625rem;
+  --success: oklch(0.60 0.18 155);
+  --success-foreground: oklch(0.98 0 0);
+  --warning: oklch(0.75 0.16 75);
+  --warning-foreground: oklch(0.25 0.06 75);
+  --sidebar: oklch(0.97 0.006 165);
+  --sidebar-foreground: oklch(0.14 0.025 165);
+  --sidebar-primary: oklch(0.45 0.14 165);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.92 0.018 165);
+  --sidebar-accent-foreground: oklch(0.22 0.04 165);
+  --sidebar-border: oklch(0.90 0.015 165);
+  --sidebar-ring: oklch(0.50 0.12 165);
+}
+
+.dark {
+  --background: oklch(0.12 0.02 165);
+  --foreground: oklch(0.94 0.008 165);
+  --card: oklch(0.16 0.022 165);
+  --card-foreground: oklch(0.94 0.008 165);
+  --popover: oklch(0.16 0.022 165);
+  --popover-foreground: oklch(0.94 0.008 165);
+  --primary: oklch(0.65 0.18 165);
+  --primary-foreground: oklch(0.12 0.02 165);
+  --secondary: oklch(0.20 0.025 165);
+  --secondary-foreground: oklch(0.90 0.008 165);
+  --muted: oklch(0.20 0.025 165);
+  --muted-foreground: oklch(0.62 0.02 165);
+  --accent: oklch(0.28 0.05 80);
+  --accent-foreground: oklch(0.90 0.05 80);
+  --destructive: oklch(0.52 0.22 25);
+  --destructive-foreground: oklch(0.95 0.01 25);
+  --border: oklch(0.25 0.025 165);
+  --input: oklch(0.25 0.025 165);
+  --ring: oklch(0.60 0.14 165);
+  --chart-1: oklch(0.60 0.16 165);
+  --chart-2: oklch(0.65 0.12 145);
+  --chart-3: oklch(0.70 0.10 130);
+  --chart-4: oklch(0.55 0.08 180);
+  --chart-5: oklch(0.75 0.06 160);
+  --success: oklch(0.65 0.20 155);
+  --success-foreground: oklch(0.98 0 0);
+  --warning: oklch(0.78 0.16 75);
+  --warning-foreground: oklch(0.18 0.06 75);
+  --sidebar: oklch(0.14 0.02 165);
+  --sidebar-foreground: oklch(0.94 0.008 165);
+  --sidebar-primary: oklch(0.65 0.18 165);
+  --sidebar-primary-foreground: oklch(0.12 0.02 165);
+  --sidebar-accent: oklch(0.22 0.03 165);
+  --sidebar-accent-foreground: oklch(0.90 0.008 165);
+  --sidebar-border: oklch(0.25 0.025 165);
+  --sidebar-ring: oklch(0.60 0.14 165);
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), 'JetBrains Mono', ui-monospace, monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* =========================================
+   ODEEN Design System — Utility Classes
+   ========================================= */
+
+/* Glassmorphism — emerald tinted */
+.glass {
+  background: oklch(0.98 0.005 165 / 0.55);
+  backdrop-filter: blur(24px) saturate(1.5);
+  border: 1px solid oklch(0.45 0.14 165 / 0.08);
+}
+
+.dark .glass {
+  background: oklch(0.16 0.022 165 / 0.55);
+  backdrop-filter: blur(24px) saturate(1.5);
+  border: 1px solid oklch(0.65 0.18 165 / 0.08);
+}
+
+.glass-strong {
+  background: oklch(0.98 0.005 165 / 0.72);
+  backdrop-filter: blur(40px) saturate(1.7);
+  border: 1px solid oklch(0.45 0.14 165 / 0.12);
+}
+
+.dark .glass-strong {
+  background: oklch(0.16 0.022 165 / 0.68);
+  backdrop-filter: blur(40px) saturate(1.7);
+  border: 1px solid oklch(0.65 0.18 165 / 0.1);
+}
+
+/* Ambient glow effects */
+.glow-primary {
+  box-shadow: 0 0 28px -4px oklch(0.5 0.14 165 / 0.3),
+              0 4px 14px -2px oklch(0 0 0 / 0.1);
+}
+
+.dark .glow-primary {
+  box-shadow: 0 0 36px -4px oklch(0.65 0.18 165 / 0.35),
+              0 4px 14px -2px oklch(0 0 0 / 0.25);
+}
+
+.glow-success {
+  box-shadow: 0 0 28px -4px oklch(0.6 0.18 155 / 0.35),
+              0 4px 14px -2px oklch(0 0 0 / 0.1);
+}
+
+.glow-amber {
+  box-shadow: 0 0 28px -4px oklch(0.75 0.14 80 / 0.35),
+              0 4px 14px -2px oklch(0 0 0 / 0.1);
+}
+
+.dark .glow-amber {
+  box-shadow: 0 0 36px -4px oklch(0.75 0.14 80 / 0.4),
+              0 4px 14px -2px oklch(0 0 0 / 0.25);
+}
+
+/* Brand wordmark gradient text */
+.brand-text {
+  background: linear-gradient(135deg, oklch(0.45 0.14 165), oklch(0.55 0.15 150));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .brand-text {
+  background: linear-gradient(135deg, oklch(0.65 0.18 165), oklch(0.72 0.16 150));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Pulsing ring animation */
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  50% { transform: scale(1.05); opacity: 0.3; }
+  100% { transform: scale(0.95); opacity: 0.7; }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s ease-in-out infinite;
+}
+
+/* Shimmer effect for loading states */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(0.5 0.14 165 / 0.06) 25%,
+    oklch(0.5 0.14 165 / 0.18) 50%,
+    oklch(0.5 0.14 165 / 0.06) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.5s ease-in-out infinite;
+}
+
+/* Soft floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Heartbeat for live elements */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.04); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.02); }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+/* Background mesh gradient — emerald + amber */
+.bg-mesh {
+  background-image:
+    radial-gradient(at 15% 15%, oklch(0.5 0.14 165 / 0.08) 0px, transparent 50%),
+    radial-gradient(at 85% 70%, oklch(0.72 0.12 80 / 0.06) 0px, transparent 50%),
+    radial-gradient(at 50% 90%, oklch(0.6 0.1 155 / 0.04) 0px, transparent 50%);
+}
+
+.dark .bg-mesh {
+  background-image:
+    radial-gradient(at 15% 15%, oklch(0.5 0.14 165 / 0.15) 0px, transparent 50%),
+    radial-gradient(at 85% 70%, oklch(0.65 0.12 80 / 0.08) 0px, transparent 50%),
+    radial-gradient(at 50% 90%, oklch(0.55 0.1 155 / 0.06) 0px, transparent 50%);
+}
+
+/* Accent gradient button */
+.btn-accent-gradient {
+  background: linear-gradient(135deg, oklch(0.72 0.14 80), oklch(0.65 0.16 65));
+  color: oklch(0.18 0.04 80);
+  transition: all 0.2s ease;
+}
+
+.btn-accent-gradient:hover {
+  background: linear-gradient(135deg, oklch(0.74 0.15 80), oklch(0.67 0.17 65));
+  box-shadow: 0 0 24px -4px oklch(0.72 0.14 80 / 0.4);
+}
+
+/* Emerald left border accent for cards */
+.card-emerald-accent {
+  border-left: 3px solid oklch(0.45 0.14 165 / 0.5);
+}
+
+.dark .card-emerald-accent {
+  border-left: 3px solid oklch(0.65 0.18 165 / 0.4);
+}
